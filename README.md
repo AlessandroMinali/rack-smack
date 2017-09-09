@@ -27,4 +27,4 @@ use Rack::Smack file: 'bad_guys.txt', list: ['wp', 'wordpress', php', 'admin']
 |asset|['css', 'gif', 'jpg', 'jpeg', 'js', 'png', 'ico', 'txt']| 
 
 ## Want to understand?
-[Code overview]()
+[Code overview](https://alessandrominali.github.io/block_malicious_users_with_rack_app)
