@@ -20,8 +20,8 @@ use Rack::Smack file: 'bad_guys.txt', list: ['wp', 'wordpress', php', 'admin']
 ```
 
 ## Defaults
-file:&nbsp;&nbsp;'./ban_list.txt'  
-list:&nbsp;&nbsp;['wp', 'wordpress', 'xmlrpc', 'sfn']  
+file:&nbsp; &nbsp;'./ban_list.txt'  
+list:&nbsp; &nbsp;['wp', 'wordpress', 'xmlrpc', 'sfn']  
 asset:&nbsp;['css', 'gif', 'jpg', 'jpeg', 'js', 'png', 'ico', 'txt']  
 
 ## Want to understand?
