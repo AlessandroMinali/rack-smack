@@ -2,11 +2,17 @@
 
 A no-nonsense force of good in a world of bad. Will prevent malicious bots/users from accessing your content once they are caught red-handed.
 
-## Usage
-Require `smack.rb` where you need it and the slide it into your middleware stack:
-
+## Install
 ```
+$ gem install rack-smack
+```
+
+## Usage
+```
+require 'rack/smack'
+
 use Rack::Smack
+run YourApp
 ```
 
 ## Options
