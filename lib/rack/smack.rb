@@ -1,3 +1,5 @@
+require 'rack/smack/version'
+
 module Rack
   # don't cross me boy
   class Smack
