@@ -1,5 +1,3 @@
-require 'rack/smack/version'
-
 module Rack
   # don't cross me boy
   class Smack
@@ -12,8 +10,13 @@ module Rack
       @asset   = opts.delete(:asset) || ASSET
       @blocked = opts.delete(:list)  || BLOCKED
       @file    = opts.delete(:file)  || FILENAME
+      @anon    = opts.delete(:anon)  || false
       raise TypeError        unless options_valid?
       IO.write(FILENAME, '') unless ::File.file?(@file)
+
+      if @anon
+        define_singleton_method(:ip) { Digest::SHA2.hexdigest(@req.ip)[0...16] }
+      end
     end
 
     def call(env)
@@ -27,13 +30,13 @@ module Rack
     private
 
     def ban!
-      IO.write(@file, "#{@req.ip},#{@req.path},#{Time.now}\n", mode: 'a')
+      IO.write(@file, "#{ip},#{@req.path},#{Time.now}\n", mode: 'a')
       smack
     end
 
     def banned?
       IO.foreach(@file) do |row|
-        return true if row.split(',')[0] == @req.ip
+        return true if row.split(',')[0] == ip
       end
       false
     end
@@ -44,6 +47,10 @@ module Rack
 
     def smack
       [403, { 'Content-Type' => 'text/html' }, ['Banned.']]
+    end
+
+    def ip
+      @req.ip
     end
   end
 end
