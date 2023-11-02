@@ -23,7 +23,7 @@ module Rack
       @req = Rack::Request.new(env)
       return @app.call(env) if @asset.include? @req.path.split('.')[-1]
       return smack          if banned?
-      return ban!           if @blocked.any? { |block| @req.path.index(block) }
+      return ban!           if @blocked.any? { |block| @req.path =~ /\.#{block}$/i }
       @app.call(env)
     end
 
